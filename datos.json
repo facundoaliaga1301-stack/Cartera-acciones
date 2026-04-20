@@ -1,0 +1,304 @@
+{
+  "fecha": "20/04/2026",
+  "tc_mep": 1412.50,
+  "total_usd": 1282242.78,
+  "posiciones": [
+    {
+      "ticker": "MELI",
+      "sector": "Tecnología",
+      "vn": 14388.,
+      "cotiz": 22600.,
+      "vm_ars": 325168800.,
+      "vm_usd": 230208.,
+      "pct": 17.95
+    },
+    {
+      "ticker": "VIST",
+      "sector": "Energía",
+      "vn": 8035.,
+      "cotiz": 31760.,
+      "vm_ars": 255191600.,
+      "vm_usd": 180666.62,
+      "pct": 14.09
+    },
+    {
+      "ticker": "PAMP",
+      "sector": "Energía",
+      "vn": 46355.,
+      "cotiz": 4700.,
+      "vm_ars": 217868500.,
+      "vm_usd": 154243.19,
+      "pct": 12.03
+    },
+    {
+      "ticker": "YPFD",
+      "sector": "Energía",
+      "vn": 3050.,
+      "cotiz": 59200.,
+      "vm_ars": 180560000.,
+      "vm_usd": 127830.09,
+      "pct": 9.97
+    },
+    {
+      "ticker": "CEPU",
+      "sector": "Energía",
+      "vn": 76569.,
+      "cotiz": 2241.,
+      "vm_ars": 171591129.,
+      "vm_usd": 121480.45,
+      "pct": 9.47
+    },
+    {
+      "ticker": "TGSU2",
+      "sector": "Energía",
+      "vn": 12419.,
+      "cotiz": 8885.,
+      "vm_ars": 110342815.,
+      "vm_usd": 78118.81,
+      "pct": 6.09
+    },
+    {
+      "ticker": "TRAN",
+      "sector": "Energía",
+      "vn": 18906.,
+      "cotiz": 3927.5,
+      "vm_ars": 74253315.,
+      "vm_usd": 52568.72,
+      "pct": 4.1
+    },
+    {
+      "ticker": "ECOG",
+      "sector": "Energía",
+      "vn": 19875.,
+      "cotiz": 2995.,
+      "vm_ars": 59525625.,
+      "vm_usd": 42142.04,
+      "pct": 3.29
+    },
+    {
+      "ticker": "META",
+      "sector": "Tecnología",
+      "vn": 1250.,
+      "cotiz": 41860.,
+      "vm_ars": 52325000.,
+      "vm_usd": 37044.25,
+      "pct": 2.89
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tecnología",
+      "vn": 2285.,
+      "cotiz": 20580.,
+      "vm_ars": 47025300.,
+      "vm_usd": 33292.25,
+      "pct": 2.6
+    },
+    {
+      "ticker": "NU",
+      "sector": "Tecnología",
+      "vn": 3177.,
+      "cotiz": 11220.,
+      "vm_ars": 35645940.,
+      "vm_usd": 25236.06,
+      "pct": 1.97
+    },
+    {
+      "ticker": "AMZN",
+      "sector": "Tecnología",
+      "vn": 12900.,
+      "cotiz": 2532.5,
+      "vm_ars": 32669250.,
+      "vm_usd": 23128.67,
+      "pct": 1.8
+    },
+    {
+      "ticker": "EWZ",
+      "sector": "ETF",
+      "vn": 1000.,
+      "cotiz": 30080.,
+      "vm_ars": 30056000.,
+      "vm_usd": 21278.58,
+      "pct": 1.66
+    },
+    {
+      "ticker": "GOOGL",
+      "sector": "Tecnología",
+      "vn": 2800.,
+      "cotiz": 8600.,
+      "vm_ars": 24080000.,
+      "vm_usd": 17047.79,
+      "pct": 1.33
+    },
+    {
+      "ticker": "METR",
+      "sector": "Energía",
+      "vn": 10774.,
+      "cotiz": 1990.,
+      "vm_ars": 21440260.,
+      "vm_usd": 15178.95,
+      "pct": 1.18
+    },
+    {
+      "ticker": "COME",
+      "sector": "Conglomerado",
+      "vn": 398362.,
+      "cotiz": 48.65,
+      "vm_ars": 19380311.3,
+      "vm_usd": 13720.57,
+      "pct": 1.07
+    },
+    {
+      "ticker": "TXAR",
+      "sector": "Industria",
+      "vn": 26941.,
+      "cotiz": 717.,
+      "vm_ars": 19316697.,
+      "vm_usd": 13675.54,
+      "pct": 1.07
+    },
+    {
+      "ticker": "AAPL",
+      "sector": "Tecnología",
+      "vn": 900.,
+      "cotiz": 19700.,
+      "vm_ars": 17730000.,
+      "vm_usd": 12552.21,
+      "pct": 0.98
+    },
+    {
+      "ticker": "VALE",
+      "sector": "Minería",
+      "vn": 1111.,
+      "cotiz": 12990.,
+      "vm_ars": 14431890.,
+      "vm_usd": 10217.27,
+      "pct": 0.8
+    },
+    {
+      "ticker": "BBD",
+      "sector": "Financiero",
+      "vn": 2196.,
+      "cotiz": 6135.,
+      "vm_ars": 13472460.,
+      "vm_usd": 9538.02,
+      "pct": 0.74
+    },
+    {
+      "ticker": "KO",
+      "sector": "Consumo",
+      "vn": 500.,
+      "cotiz": 22150.,
+      "vm_ars": 11075000.,
+      "vm_usd": 7840.71,
+      "pct": 0.61
+    },
+    {
+      "ticker": "PAGS",
+      "sector": "Financiero",
+      "vn": 2000.,
+      "cotiz": 5470.,
+      "vm_ars": 10940000.,
+      "vm_usd": 7745.13,
+      "pct": 0.6
+    },
+    {
+      "ticker": "TGNO4",
+      "sector": "Energía",
+      "vn": 2402.,
+      "cotiz": 4270.,
+      "vm_ars": 10256540.,
+      "vm_usd": 7261.27,
+      "pct": 0.57
+    },
+    {
+      "ticker": "GGAL",
+      "sector": "Financiero",
+      "vn": 1372.,
+      "cotiz": 7005.,
+      "vm_ars": 9610860.,
+      "vm_usd": 6804.15,
+      "pct": 0.53
+    },
+    {
+      "ticker": "CRES",
+      "sector": "Agro",
+      "vn": 4826.,
+      "cotiz": 1696.,
+      "vm_ars": 8184896.,
+      "vm_usd": 5794.62,
+      "pct": 0.45
+    },
+    {
+      "ticker": "SUPV",
+      "sector": "Financiero",
+      "vn": 2833.,
+      "cotiz": 2862.5,
+      "vm_ars": 8109462.5,
+      "vm_usd": 5741.21,
+      "pct": 0.45
+    },
+    {
+      "ticker": "DGCE",
+      "sector": "Energía",
+      "vn": 3811.,
+      "cotiz": 1985.,
+      "vm_ars": 7564835.,
+      "vm_usd": 5355.64,
+      "pct": 0.42
+    },
+    {
+      "ticker": "MU",
+      "sector": "Tecnología",
+      "vn": 50.,
+      "cotiz": 133025.,
+      "vm_ars": 6651250.,
+      "vm_usd": 4708.85,
+      "pct": 0.37
+    },
+    {
+      "ticker": "COPX",
+      "sector": "ETF",
+      "vn": 600.,
+      "cotiz": 9150.,
+      "vm_ars": 5490000.,
+      "vm_usd": 3886.73,
+      "pct": 0.3
+    },
+    {
+      "ticker": "V",
+      "sector": "Financiero",
+      "vn": 200.,
+      "cotiz": 25760.,
+      "vm_ars": 5152000.,
+      "vm_usd": 3647.43,
+      "pct": 0.28
+    },
+    {
+      "ticker": "PEP",
+      "sector": "Consumo",
+      "vn": 400.,
+      "cotiz": 12810.,
+      "vm_ars": 5124000.,
+      "vm_usd": 3627.61,
+      "pct": 0.28
+    },
+    {
+      "ticker": "HARG",
+      "sector": "Industria",
+      "vn": 405.,
+      "cotiz": 1745.,
+      "vm_ars": 706725.,
+      "vm_usd": 500.34,
+      "pct": 0.04
+    },
+    {
+      "ticker": "IRSA",
+      "sector": "Real Estate",
+      "vn": 97.,
+      "cotiz": 2345.,
+      "vm_ars": 227465.,
+      "vm_usd": 161.04,
+      "pct": 0.01
+    }
+  ]
+}
