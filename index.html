@@ -7,8 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --bg: #0d0f14;
   --surface: #13151c;
@@ -24,159 +28,444 @@
   --mono: 'IBM Plex Mono', monospace;
   --sans: 'Syne', sans-serif;
 }
- 
-body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; min-height: 100vh; }
- 
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+  min-height: 100vh;
+}
+
 /* ── Nav ── */
 nav {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 28px; height: 52px;
-  background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 52px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
 }
-.nav-logo { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+.nav-logo {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
 .nav-logo span { color: var(--accent); }
-.nav-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; gap: 20px; align-items: center; }
-.nav-meta .tag { background: rgba(79,142,247,0.12); color: var(--accent); padding: 3px 8px; border-radius: 4px; }
- 
+.nav-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.nav-meta .tag {
+  background: rgba(79,142,247,0.12);
+  color: var(--accent);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
 /* ── Layout ── */
-.shell { max-width: 1400px; margin: 0 auto; padding: 28px 28px 60px; }
- 
+.shell {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 28px 60px;
+}
+
+/* ── TC strip ── */
+.tc-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.tc-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  flex: 1;
+  min-width: 80px;
+}
+.tc-box .tc-label {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.tc-box .tc-val {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
 /* ── Summary cards ── */
-.summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 28px; }
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
 .stat-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
 }
-.stat-card .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
-.stat-card .val { font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--text); line-height: 1; }
-.stat-card .sub { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 5px; }
-.stat-card .delta { font-family: var(--mono); font-size: 12px; margin-top: 4px; }
-.pos { color: var(--green); }
-.neg { color: var(--red); }
- 
+.stat-card .label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.stat-card .val {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1;
+}
+.stat-card .sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
 /* ── Main grid ── */
-.main-grid { display: grid; grid-template-columns: 1fr 280px; gap: 20px; align-items: start; }
- 
-/* ── Table section ── */
-.table-section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
- 
-.table-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 20px; border-bottom: 1px solid var(--border);
-  gap: 12px; flex-wrap: wrap;
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
+  align-items: start;
 }
-.table-title { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
- 
-.controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
- 
+
+/* ── Table section ── */
+.table-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.table-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
 .search-wrap { position: relative; }
-.search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; stroke: var(--muted); fill: none; pointer-events: none; }
+.search-wrap svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  stroke: var(--muted);
+  fill: none;
+  pointer-events: none;
+}
 input[type="text"] {
-  background: var(--surface2); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--sans); font-size: 13px;
-  padding: 6px 10px 6px 32px; border-radius: 7px; width: 180px; outline: none;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 6px 10px 6px 32px;
+  border-radius: 7px;
+  width: 180px;
+  outline: none;
   transition: border-color 0.15s;
 }
 input[type="text"]:focus { border-color: var(--accent); }
 input[type="text"]::placeholder { color: var(--muted); }
- 
+
 select {
-  background: var(--surface2); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--sans); font-size: 13px;
-  padding: 6px 10px; border-radius: 7px; outline: none; cursor: pointer;
-  appearance: none; -webkit-appearance: none;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b7280'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
   padding-right: 28px;
 }
- 
+
 button {
-  font-family: var(--sans); font-size: 13px; cursor: pointer;
-  border-radius: 7px; padding: 6px 14px; transition: all 0.15s;
-  border: 1px solid var(--border2); background: var(--surface2); color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 7px;
+  padding: 6px 14px;
+  transition: all 0.15s;
+  border: 1px solid var(--border2);
+  background: var(--surface2);
+  color: var(--text);
 }
-button:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); }
-button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-button.primary:hover { background: #3a7de0; border-color: #3a7de0; color: #fff; }
-button.danger-btn { border-color: transparent; background: transparent; color: var(--muted); padding: 4px 8px; font-size: 12px; }
-button.danger-btn:hover { color: var(--red); border-color: transparent; background: transparent; }
- 
+button:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+button.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+button.primary:hover {
+  background: #3a7de0;
+  border-color: #3a7de0;
+  color: #fff;
+}
+button.danger-btn {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+  padding: 4px 8px;
+  font-size: 12px;
+}
+button.danger-btn:hover {
+  color: var(--red);
+  border-color: transparent;
+  background: transparent;
+}
+
 /* ── Table ── */
 .tbl-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; }
 thead th {
-  font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
-  color: var(--muted); font-weight: 500; padding: 10px 16px;
-  border-bottom: 1px solid var(--border); text-align: right;
-  white-space: nowrap; cursor: pointer; user-select: none;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
   transition: color 0.15s;
 }
 thead th:first-child { text-align: left; }
+thead th:nth-child(2) { text-align: left; }
 thead th:hover { color: var(--text); }
 thead th.sort-asc::after { content: ' ↑'; color: var(--accent); }
 thead th.sort-desc::after { content: ' ↓'; color: var(--accent); }
- 
-tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
 tbody tr:hover { background: rgba(255,255,255,0.025); }
 tbody tr:last-child { border-bottom: none; }
- 
-td { padding: 11px 16px; text-align: right; font-family: var(--mono); font-size: 13px; color: var(--text); white-space: nowrap; }
-td:first-child { text-align: left; font-family: var(--sans); }
-td.ticker { font-weight: 700; font-size: 14px; color: var(--text); }
-td.name { font-family: var(--sans); font-size: 12px; color: var(--muted); font-weight: 400; }
- 
-.sector-pill {
-  display: inline-block; font-size: 10px; font-family: var(--sans); font-weight: 500;
-  padding: 2px 8px; border-radius: 20px; white-space: nowrap;
+
+td {
+  padding: 11px 16px;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
 }
- 
-.bar-cell { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
-.mini-bar { height: 4px; border-radius: 2px; background: var(--accent); opacity: 0.5; }
- 
-/* ── Tfoot ── */
-tfoot td { padding: 12px 16px; font-family: var(--mono); font-size: 13px; font-weight: 500; border-top: 1px solid var(--border2); }
-tfoot td:first-child { font-family: var(--sans); color: var(--muted); font-size: 12px; }
- 
+td:first-child { text-align: left; font-family: var(--sans); }
+td:nth-child(2) { text-align: left; font-family: var(--sans); }
+
+.ticker {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+}
+.sector-pill {
+  display: inline-block;
+  font-size: 10px;
+  font-family: var(--sans);
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.bar-cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.mini-bar {
+  height: 4px;
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+tfoot td {
+  padding: 12px 16px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  border-top: 1px solid var(--border2);
+}
+tfoot td:first-child {
+  font-family: var(--sans);
+  color: var(--muted);
+  font-size: 12px;
+}
+
 /* ── Side panel ── */
-.side-panel { display: flex; flex-direction: column; gap: 16px; }
- 
-.panel-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
-.panel-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 14px; font-weight: 500; }
- 
-.donut-wrap { position: relative; width: 140px; height: 140px; margin: 0 auto 14px; }
-.donut-wrap canvas { width: 140px !important; height: 140px !important; }
-.donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
-.donut-center .dc-val { font-family: var(--mono); font-size: 15px; font-weight: 500; line-height: 1; }
-.donut-center .dc-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
- 
-.legend-list { display: flex; flex-direction: column; gap: 7px; }
-.legend-row { display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; }
-.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-.legend-name { flex: 1; color: var(--muted); }
-.legend-pct { font-family: var(--mono); font-size: 11px; color: var(--text); }
- 
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.panel-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+}
+.panel-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.donut-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 14px;
+}
+.donut-wrap canvas {
+  width: 140px !important;
+  height: 140px !important;
+}
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  pointer-events: none;
+}
+.donut-center .dc-val {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+}
+.donut-center .dc-sub {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.legend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.legend-name {
+  flex: 1;
+  color: var(--muted);
+}
+.legend-pct {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text);
+}
+
 /* ── Add form ── */
-.add-form { display: flex; flex-direction: column; gap: 8px; }
-.form-row { display: flex; gap: 6px; }
-.form-row input, .form-row select { flex: 1; min-width: 0; }
-.form-row input[type="text"] { width: auto; padding-left: 10px; }
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-row {
+  display: flex;
+  gap: 6px;
+}
+.form-row input,
+.form-row select {
+  flex: 1;
+  min-width: 0;
+}
+.form-row input[type="text"] {
+  width: auto;
+  padding-left: 10px;
+}
 .form-row input[type="number"] {
-  background: var(--surface2); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--mono); font-size: 13px;
-  padding: 6px 10px; border-radius: 7px; outline: none; width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  outline: none;
+  width: 100%;
 }
 .form-row input[type="number"]:focus { border-color: var(--accent); }
-label.flabel { font-size: 11px; color: var(--muted); margin-bottom: 1px; display: block; }
- 
-/* ── TC strip ── */
-.tc-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-.tc-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; flex: 1; min-width: 80px; }
-.tc-box .tc-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-.tc-box .tc-val { font-family: var(--mono); font-size: 13px; font-weight: 500; margin-top: 2px; }
- 
-/* ── Empty state ── */
-.empty { text-align: center; padding: 40px; color: var(--muted); font-size: 13px; }
- 
+label.flabel {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 1px;
+  display: block;
+}
+
+/* ── Error / empty ── */
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.error-msg {
+  text-align: center;
+  padding: 40px;
+  color: var(--red);
+  font-size: 13px;
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .main-grid { grid-template-columns: 1fr; }
@@ -185,24 +474,37 @@ label.flabel { font-size: 11px; color: var(--muted); margin-bottom: 1px; display
 </style>
 </head>
 <body>
- 
+
 <nav>
   <div class="nav-logo">cartera<span>.</span>ar</div>
   <div class="nav-meta">
-    <span>Posición al 13/04/2025</span>
+    <span id="nav-fecha">Cargando...</span>
     <span class="tag">Cocos + Sumando</span>
     <span id="clock"></span>
   </div>
 </nav>
- 
+
 <div class="shell">
- 
+
   <div class="tc-strip">
-    <div class="tc-box"><div class="tc-label">TC MEP</div><div class="tc-val" id="tc-mep">$ 1.412,50</div></div>
-    <div class="tc-box"><div class="tc-label">TC Oficial</div><div class="tc-val" id="tc-ofic">$ 1.434,00</div></div>
-    <div class="tc-box"><div class="tc-label">TC Cable</div><div class="tc-val" id="tc-cable">$ 1.434,00</div></div>
+    <div class="tc-box">
+      <div class="tc-label">TC MEP</div>
+      <div class="tc-val" id="tc-mep">—</div>
+    </div>
+    <div class="tc-box">
+      <div class="tc-label">Total USD</div>
+      <div class="tc-val" id="tc-total">—</div>
+    </div>
+    <div class="tc-box">
+      <div class="tc-label">Total ARS</div>
+      <div class="tc-val" id="tc-ars">—</div>
+    </div>
+    <div class="tc-box">
+      <div class="tc-label">Última actualización</div>
+      <div class="tc-val" id="tc-update">—</div>
+    </div>
   </div>
- 
+
   <div class="summary-grid">
     <div class="stat-card">
       <div class="label">Valor total USD</div>
@@ -225,72 +527,35 @@ label.flabel { font-size: 11px; color: var(--muted); margin-bottom: 1px; display
       <div class="sub" id="s-sec-pct">—</div>
     </div>
   </div>
- 
+
   <div class="main-grid">
- 
+
     <div class="table-section">
       <div class="table-header">
         <div class="table-title">Posiciones</div>
         <div class="controls">
           <div class="search-wrap">
-            <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg viewBox="0 0 24 24" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
             <input type="text" id="search" placeholder="Buscar especie...">
           </div>
           <select id="filter-sector">
             <option value="">Todos los sectores</option>
           </select>
-          <button class="primary" onclick="openAddModal()">+ Agregar</button>
+          <button class="primary" onclick="openAddForm()">+ Agregar</button>
         </div>
       </div>
- 
-      <div class="tbl-wrap">
-        <table id="main-table">
-          <thead>
-            <tr>
-              <th onclick="sortBy('ticker')" id="th-ticker">Especie</th>
-              <th onclick="sortBy('sector')" id="th-sector">Sector</th>
-              <th onclick="sortBy('vn')" id="th-vn">V. nominal</th>
-              <th onclick="sortBy('cotiz')" id="th-cotiz">Cotización</th>
-              <th onclick="sortBy('vm_ars')" id="th-vm_ars">VM ARS</th>
-              <th onclick="sortBy('vm_usd')" id="th-vm_usd">VM USD</th>
-              <th onclick="sortBy('pct')" id="th-pct">% Cart.</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="tbody"></tbody>
-          <tfoot id="tfoot"></tfoot>
-        </table>
-      </div>
-    </div>
- 
-    <div class="side-panel">
-      <div class="panel-card">
-        <div class="panel-title">Composición</div>
-        <div class="donut-wrap">
-          <canvas id="donut"></canvas>
-          <div class="donut-center">
-            <div class="dc-val" id="dc-val">—</div>
-            <div class="dc-sub">total USD</div>
-          </div>
-        </div>
-        <div class="legend-list" id="legend"></div>
-      </div>
- 
-      <div class="panel-card">
-        <div class="panel-title">Agregar posición</div>
-        <div class="add-form" id="quick-add-form">
+
+      <div id="add-form-wrap" style="display:none; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--surface2);">
+        <div class="add-form">
           <div class="form-row">
             <div style="flex:1">
               <label class="flabel">Ticker</label>
               <input type="text" id="f-ticker" placeholder="AAPL" style="width:100%;padding-left:10px">
             </div>
-            <div style="flex:1.5">
-              <label class="flabel">Nombre</label>
-              <input type="text" id="f-name" placeholder="Apple Inc." style="width:100%;padding-left:10px">
-            </div>
-          </div>
-          <div class="form-row">
-            <div style="flex:1">
+            <div style="flex:2">
               <label class="flabel">Sector</label>
               <select id="f-sector" style="width:100%">
                 <option>Energía</option>
@@ -302,6 +567,7 @@ label.flabel { font-size: 11px; color: var(--muted); margin-bottom: 1px; display
                 <option>Consumo</option>
                 <option>Agro</option>
                 <option>Real Estate</option>
+                <option>Minería</option>
                 <option>Otro</option>
               </select>
             </div>
@@ -316,16 +582,54 @@ label.flabel { font-size: 11px; color: var(--muted); margin-bottom: 1px; display
               <input type="number" id="f-cotiz" placeholder="5000" min="0">
             </div>
           </div>
-          <button class="primary" onclick="addFromForm()" style="width:100%;margin-top:4px">Agregar</button>
+          <div class="form-row">
+            <button class="primary" onclick="addFromForm()" style="flex:1">Agregar</button>
+            <button onclick="closeAddForm()" style="flex:1">Cancelar</button>
+          </div>
         </div>
       </div>
+
+      <div class="tbl-wrap">
+        <table id="main-table">
+          <thead>
+            <tr>
+              <th onclick="sortBy('ticker')" id="th-ticker">Especie</th>
+              <th onclick="sortBy('sector')" id="th-sector">Sector</th>
+              <th onclick="sortBy('vn')" id="th-vn">V. nominal</th>
+              <th onclick="sortBy('cotiz')" id="th-cotiz">Cotización</th>
+              <th onclick="sortBy('vm_ars')" id="th-vm_ars">VM ARS</th>
+              <th onclick="sortBy('vm_usd')" id="th-vm_usd">VM USD</th>
+              <th onclick="sortBy('pct')" id="th-pct">% Cart.</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr><td colspan="8" class="empty">Cargando datos...</td></tr>
+          </tbody>
+          <tfoot id="tfoot"></tfoot>
+        </table>
+      </div>
     </div>
+
+    <div class="side-panel">
+      <div class="panel-card">
+        <div class="panel-title">Composición por sector</div>
+        <div class="donut-wrap">
+          <canvas id="donut"></canvas>
+          <div class="donut-center">
+            <div class="dc-val" id="dc-val">—</div>
+            <div class="dc-sub">total USD</div>
+          </div>
+        </div>
+        <div class="legend-list" id="legend"></div>
+      </div>
+    </div>
+
   </div>
 </div>
- 
+
+<script src="datos.js"></script>
 <script>
-const MEP = 1412.5;
- 
 const SECTOR_COLORS = {
   'Energía':      '#f59e0b',
   'Tecnología':   '#4f8ef7',
@@ -336,162 +640,154 @@ const SECTOR_COLORS = {
   'Consumo':      '#ec4899',
   'Agro':         '#84cc16',
   'Real Estate':  '#ef4444',
-  'Otro':         '#888780',
+  'Minería':      '#fb923c',
+  'Otro':         '#6b7280',
 };
- 
-let positions = [
-  {ticker:'VIST',  name:'Vista Energy',               sector:'Energía',      vn:15235,   cotiz:32440},
-  {ticker:'MELI',  name:'MercadoLibre',                sector:'Tecnología',   vn:14388,   cotiz:21800},
-  {ticker:'YPFD',  name:'YPF',                         sector:'Energía',      vn:4381,    cotiz:63275},
-  {ticker:'PAMP',  name:'Pampa Energía',               sector:'Energía',      vn:46355,   cotiz:5160},
-  {ticker:'CEPU',  name:'Central Puerto',              sector:'Energía',      vn:76569,   cotiz:2460},
-  {ticker:'TGSU2', name:'TGS',                         sector:'Energía',      vn:12419,   cotiz:9620},
-  {ticker:'TRAN',  name:'Transener',                   sector:'Energía',      vn:18906,   cotiz:3905},
-  {ticker:'ECOG',  name:'Ecogas',                      sector:'Energía',      vn:19875,   cotiz:3127.5},
-  {ticker:'META',  name:'Meta Platforms',              sector:'Tecnología',   vn:1250,    cotiz:38660},
-  {ticker:'NU',    name:'Nu Holdings',                 sector:'Tecnología',   vn:3177,    cotiz:11030},
-  {ticker:'MSFT',  name:'Microsoft',                   sector:'Tecnología',   vn:1685,    cotiz:18240},
-  {ticker:'EWZ',   name:'iShares MSCI Brazil ETF',     sector:'ETF',          vn:1000,    cotiz:30440},
-  {ticker:'METR',  name:'Metrogas',                    sector:'Energía',      vn:10774,   cotiz:2073},
-  {ticker:'COME',  name:'Soc. Comercial del Plata',    sector:'Conglomerado', vn:398362,  cotiz:48.6},
-  {ticker:'TXAR',  name:'Ternium Argentina',           sector:'Industria',    vn:26941,   cotiz:718},
-  {ticker:'AAPL',  name:'Apple',                       sector:'Tecnología',   vn:600,     cotiz:19180},
-  {ticker:'KO',    name:'Coca-Cola',                   sector:'Consumo',      vn:500,     cotiz:22830},
-  {ticker:'TGNO4', name:'TGN',                         sector:'Energía',      vn:2402,    cotiz:4427.5},
-  {ticker:'GGAL',  name:'Grupo Financiero Galicia',    sector:'Financiero',   vn:1372,    cotiz:7085},
-  {ticker:'CRES',  name:'Cresud',                      sector:'Agro',         vn:4826,    cotiz:1774},
-  {ticker:'SUPV',  name:'Grupo Supervielle',           sector:'Financiero',   vn:2833,    cotiz:2855},
-  {ticker:'DGCE',  name:'Dist. Gas del Centro',        sector:'Energía',      vn:3811,    cotiz:1970},
-  {ticker:'MU',    name:'Micron Technology',           sector:'Tecnología',   vn:50,      cotiz:124150},
-  {ticker:'COPX',  name:'Global X Copper ETF',         sector:'ETF',          vn:600,     cotiz:8800},
-  {ticker:'V',     name:'Visa',                        sector:'Financiero',   vn:200,     cotiz:24980},
-  {ticker:'HARG',  name:'Holcim Argentina',            sector:'Industria',    vn:405,     cotiz:1840},
-  {ticker:'IRSA',  name:'IRSA',                        sector:'Real Estate',  vn:97,      cotiz:2360},
-];
- 
+
+let positions = [];
+let totalUSD = 0;
+let tcMep = 0;
 let sortCol = 'vm_usd';
 let sortDir = -1;
 let filterSector = '';
 let searchQ = '';
 let donutChart = null;
- 
-function vmARS(p) { return p.vn * p.cotiz; }
-function vmUSD(p) { return vmARS(p) / MEP; }
- 
-function fmt(n, dec=0) {
-  return Number(n).toLocaleString('es-AR', {minimumFractionDigits:dec, maximumFractionDigits:dec});
+
+function fmt(n, dec) {
+  dec = dec || 0;
+  return Number(n).toLocaleString('es-AR', {
+    minimumFractionDigits: dec,
+    maximumFractionDigits: dec
+  });
 }
- 
-function enriched() {
-  const total = positions.reduce((a,p) => a + vmUSD(p), 0);
-  return positions.map(p => ({
-    ...p,
-    vm_ars: vmARS(p),
-    vm_usd: vmUSD(p),
-    pct: total > 0 ? vmUSD(p) / total * 100 : 0,
-  }));
-}
- 
-function filtered() {
-  let rows = enriched();
-  if (filterSector) rows = rows.filter(r => r.sector === filterSector);
-  if (searchQ) {
-    const q = searchQ.toLowerCase();
-    rows = rows.filter(r => r.ticker.toLowerCase().includes(q) || r.name.toLowerCase().includes(q));
+
+function loadData() {
+  try {
+    var d = window.CARTERA_DATA;
+    if (!d) throw new Error('datos.js no encontrado en el repositorio');
+    positions = d.posiciones || [];
+    totalUSD  = d.total_usd  || 0;
+    tcMep     = d.tc_mep     || 1412.5;
+
+    document.getElementById('nav-fecha').textContent  = 'Posición al ' + (d.fecha || '—');
+    document.getElementById('tc-mep').textContent     = '$ ' + fmt(tcMep, 2);
+    document.getElementById('tc-total').textContent   = 'USD ' + fmt(totalUSD);
+    document.getElementById('tc-update').textContent  = d.fecha || '—';
+
+    var totalARS = positions.reduce(function(a, p) { return a + (p.vm_ars || 0); }, 0);
+    document.getElementById('tc-ars').textContent = '$ ' + fmt(totalARS);
+
+    populateSectorFilter();
+    render();
+  } catch(e) {
+    document.getElementById('tbody').innerHTML =
+      '<tr><td colspan="8" class="error-msg">Error al cargar datos: ' + e.message + '</td></tr>';
   }
-  rows.sort((a,b) => {
-    const av = typeof a[sortCol] === 'string' ? a[sortCol] : +a[sortCol];
-    const bv = typeof b[sortCol] === 'string' ? b[sortCol] : +b[sortCol];
+}
+
+function filtered() {
+  var rows = positions.slice();
+  if (filterSector) {
+    rows = rows.filter(function(r) { return r.sector === filterSector; });
+  }
+  if (searchQ) {
+    var q = searchQ.toLowerCase();
+    rows = rows.filter(function(r) { return r.ticker.toLowerCase().indexOf(q) >= 0; });
+  }
+  rows.sort(function(a, b) {
+    var av = typeof a[sortCol] === 'string' ? a[sortCol] : +a[sortCol];
+    var bv = typeof b[sortCol] === 'string' ? b[sortCol] : +b[sortCol];
     if (av < bv) return sortDir;
     if (av > bv) return -sortDir;
     return 0;
   });
   return rows;
 }
- 
-function sectorPill(sec) {
-  const col = SECTOR_COLORS[sec] || '#888';
-  const alpha = col + '22';
-  return `<span class="sector-pill" style="background:${alpha};color:${col}">${sec}</span>`;
-}
- 
+
 function render() {
-  const rows = filtered();
-  const allRows = enriched();
-  const totalUSD = allRows.reduce((a,r) => a + r.vm_usd, 0);
-  const totalARS = allRows.reduce((a,r) => a + r.vm_ars, 0);
-  const maxUSD = Math.max(...allRows.map(r => r.vm_usd));
- 
-  const tbody = document.getElementById('tbody');
-  if (rows.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" class="empty">No hay posiciones que coincidan</td></tr>`;
-  } else {
-    tbody.innerHTML = rows.map(r => {
-      const barW = Math.round(r.vm_usd / maxUSD * 50);
-      return `<tr>
-        <td>
-          <span class="ticker">${r.ticker}</span>
-          <div class="name">${r.name}</div>
-        </td>
-        <td style="text-align:left">${sectorPill(r.sector)}</td>
-        <td>${fmt(r.vn)}</td>
-        <td>$ ${fmt(r.cotiz,1)}</td>
-        <td>$ ${fmt(r.vm_ars)}</td>
-        <td>USD ${fmt(r.vm_usd)}</td>
-        <td>
-          <div class="bar-cell">
-            <div class="mini-bar" style="width:${barW}px;background:${SECTOR_COLORS[r.sector]||'#4f8ef7'}"></div>
-            <span>${r.pct.toFixed(1)}%</span>
-          </div>
-        </td>
-        <td><button class="danger-btn" onclick="removePos('${r.ticker}')">✕</button></td>
-      </tr>`;
-    }).join('');
-  }
- 
-  const tfoot = document.getElementById('tfoot');
-  tfoot.innerHTML = `<tr>
-    <td colspan="4" style="font-family:var(--sans);color:var(--muted);font-size:12px">${rows.length} especie${rows.length!==1?'s':''} mostradas</td>
-    <td>$ ${fmt(rows.reduce((a,r)=>a+r.vm_ars,0))}</td>
-    <td>USD ${fmt(rows.reduce((a,r)=>a+r.vm_usd,0))}</td>
-    <td colspan="2"></td>
-  </tr>`;
- 
+  var rows    = filtered();
+  var maxUSD  = Math.max.apply(null, positions.map(function(r) { return r.vm_usd; }));
+  var totalARS = positions.reduce(function(a, r) { return a + (r.vm_ars || 0); }, 0);
+
+  // Summary cards
   document.getElementById('s-usd').textContent = 'USD ' + fmt(totalUSD);
-  document.getElementById('s-ars').textContent = '$ ' + fmt(totalARS);
-  document.getElementById('s-esp').textContent = allRows.length;
-  const top = [...allRows].sort((a,b)=>b.vm_usd-a.vm_usd)[0];
+  document.getElementById('s-ars').textContent = '$ '   + fmt(totalARS);
+  document.getElementById('s-esp').textContent = positions.length;
+
+  var top = positions.slice().sort(function(a,b){ return b.vm_usd - a.vm_usd; })[0];
   if (top) {
-    document.getElementById('s-top').textContent = top.ticker;
-    document.getElementById('s-top-pct').textContent = top.pct.toFixed(1) + '% de la cartera';
+    document.getElementById('s-top').textContent     = top.ticker;
+    document.getElementById('s-top-pct').textContent = (+top.pct).toFixed(1) + '% de la cartera';
   }
- 
-  const secMap = {};
-  allRows.forEach(r => { secMap[r.sector] = (secMap[r.sector]||0) + r.vm_usd; });
-  const topSec = Object.entries(secMap).sort((a,b)=>b[1]-a[1])[0];
+
+  var secMap = {};
+  positions.forEach(function(r) {
+    secMap[r.sector] = (secMap[r.sector] || 0) + r.vm_usd;
+  });
+  var topSec = Object.entries(secMap).sort(function(a,b){ return b[1]-a[1]; })[0];
   if (topSec) {
-    document.getElementById('s-sec').textContent = topSec[0];
+    document.getElementById('s-sec').textContent     = topSec[0];
     document.getElementById('s-sec-pct').textContent = (topSec[1]/totalUSD*100).toFixed(1) + '% del portfolio';
   }
- 
+
   document.getElementById('dc-val').textContent = 'USD ' + fmt(totalUSD);
-  renderDonut(secMap, totalUSD);
-  renderLegend(secMap, totalUSD);
+
+  // Table rows
+  if (rows.length === 0) {
+    document.getElementById('tbody').innerHTML =
+      '<tr><td colspan="8" class="empty">No hay posiciones que coincidan</td></tr>';
+  } else {
+    document.getElementById('tbody').innerHTML = rows.map(function(r) {
+      var barW = Math.round(r.vm_usd / maxUSD * 50);
+      var col  = SECTOR_COLORS[r.sector] || '#888';
+      return '<tr>' +
+        '<td><span class="ticker">' + r.ticker + '</span></td>' +
+        '<td><span class="sector-pill" style="background:' + col + '22;color:' + col + '">' + r.sector + '</span></td>' +
+        '<td>' + fmt(r.vn) + '</td>' +
+        '<td>$ ' + fmt(r.cotiz, 1) + '</td>' +
+        '<td>$ ' + fmt(r.vm_ars) + '</td>' +
+        '<td>USD ' + fmt(r.vm_usd) + '</td>' +
+        '<td><div class="bar-cell"><div class="mini-bar" style="width:' + barW + 'px;background:' + col + '"></div><span>' + (+r.pct).toFixed(1) + '%</span></div></td>' +
+        '<td><button class="danger-btn" onclick="removePos(\'' + r.ticker + '\')">&#x2715;</button></td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  // Footer totals
+  var visUSD = rows.reduce(function(a,r){ return a + r.vm_usd; }, 0);
+  var visARS = rows.reduce(function(a,r){ return a + (r.vm_ars||0); }, 0);
+  document.getElementById('tfoot').innerHTML =
+    '<tr>' +
+    '<td colspan="4" style="font-family:var(--sans);color:var(--muted);font-size:12px">' + rows.length + ' especie' + (rows.length !== 1 ? 's' : '') + ' mostradas</td>' +
+    '<td>$ ' + fmt(visARS) + '</td>' +
+    '<td>USD ' + fmt(visUSD) + '</td>' +
+    '<td colspan="2"></td>' +
+    '</tr>';
+
+  renderDonut(secMap);
+  renderLegend(secMap);
   renderSortHeaders();
-  populateSectorFilter();
 }
- 
-function renderDonut(secMap, total) {
-  const entries = Object.entries(secMap).sort((a,b)=>b[1]-a[1]);
-  const labels = entries.map(e=>e[0]);
-  const vals = entries.map(e=>e[1]);
-  const colors = labels.map(l => SECTOR_COLORS[l]||'#888');
- 
+
+function renderDonut(secMap) {
+  var entries = Object.entries(secMap).sort(function(a,b){ return b[1]-a[1]; });
+  var labels  = entries.map(function(e){ return e[0]; });
+  var vals    = entries.map(function(e){ return e[1]; });
+  var colors  = labels.map(function(l){ return SECTOR_COLORS[l] || '#888'; });
+
   if (donutChart) { donutChart.destroy(); }
-  const ctx = document.getElementById('donut').getContext('2d');
+  var ctx = document.getElementById('donut').getContext('2d');
   donutChart = new Chart(ctx, {
     type: 'doughnut',
-    data: { labels, datasets: [{ data: vals, backgroundColor: colors, borderWidth: 0, hoverOffset: 3 }] },
+    data: {
+      labels: labels,
+      datasets: [{
+        data: vals,
+        backgroundColor: colors,
+        borderWidth: 0,
+        hoverOffset: 4
+      }]
+    },
     options: {
       responsive: false,
       cutout: '72%',
@@ -499,102 +795,142 @@ function renderDonut(secMap, total) {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            label: c => ` ${(c.raw/total*100).toFixed(1)}%  USD ${fmt(c.raw)}`
+            label: function(c) {
+              return ' ' + (c.raw/totalUSD*100).toFixed(1) + '%  USD ' + fmt(c.raw);
+            }
           }
         }
       }
     }
   });
 }
- 
-function renderLegend(secMap, total) {
-  const entries = Object.entries(secMap).sort((a,b)=>b[1]-a[1]);
-  document.getElementById('legend').innerHTML = entries.map(([sec, val]) => `
-    <div class="legend-row" onclick="toggleSectorFilter('${sec}')">
-      <div class="legend-dot" style="background:${SECTOR_COLORS[sec]||'#888'}"></div>
-      <span class="legend-name">${sec}</span>
-      <span class="legend-pct">${(val/total*100).toFixed(1)}%</span>
-    </div>
-  `).join('');
+
+function renderLegend(secMap) {
+  var entries = Object.entries(secMap).sort(function(a,b){ return b[1]-a[1]; });
+  document.getElementById('legend').innerHTML = entries.map(function(entry) {
+    var sec = entry[0];
+    var val = entry[1];
+    var col = SECTOR_COLORS[sec] || '#888';
+    var pct = (val / totalUSD * 100).toFixed(1);
+    return '<div class="legend-row" onclick="toggleSectorFilter(\'' + sec + '\')">' +
+      '<div class="legend-dot" style="background:' + col + '"></div>' +
+      '<span class="legend-name">' + sec + '</span>' +
+      '<span class="legend-pct">' + pct + '%</span>' +
+      '</div>';
+  }).join('');
 }
- 
+
 function renderSortHeaders() {
-  document.querySelectorAll('thead th[id]').forEach(th => {
-    th.classList.remove('sort-asc','sort-desc');
-    const col = th.id.replace('th-','');
-    if (col === sortCol) th.classList.add(sortDir === -1 ? 'sort-desc' : 'sort-asc');
+  document.querySelectorAll('thead th[id]').forEach(function(th) {
+    th.classList.remove('sort-asc', 'sort-desc');
+    var col = th.id.replace('th-', '');
+    if (col === sortCol) {
+      th.classList.add(sortDir === -1 ? 'sort-desc' : 'sort-asc');
+    }
   });
 }
- 
+
 function populateSectorFilter() {
-  const sel = document.getElementById('filter-sector');
-  const current = sel.value;
-  const sectors = [...new Set(positions.map(p=>p.sector))].sort();
+  var sel     = document.getElementById('filter-sector');
+  var current = sel.value;
+  var sectors = [];
+  positions.forEach(function(p) {
+    if (sectors.indexOf(p.sector) < 0) sectors.push(p.sector);
+  });
+  sectors.sort();
   sel.innerHTML = '<option value="">Todos los sectores</option>' +
-    sectors.map(s=>`<option value="${s}"${s===current?' selected':''}>${s}</option>`).join('');
+    sectors.map(function(s) {
+      return '<option value="' + s + '"' + (s === current ? ' selected' : '') + '>' + s + '</option>';
+    }).join('');
 }
- 
+
 function sortBy(col) {
-  if (sortCol === col) sortDir *= -1;
+  if (sortCol === col) { sortDir *= -1; }
   else { sortCol = col; sortDir = -1; }
   render();
 }
- 
+
 function toggleSectorFilter(sec) {
-  filterSector = filterSector === sec ? '' : sec;
+  filterSector = (filterSector === sec) ? '' : sec;
   document.getElementById('filter-sector').value = filterSector;
   render();
 }
- 
+
 function removePos(ticker) {
-  positions = positions.filter(p => p.ticker !== ticker);
+  positions = positions.filter(function(p) { return p.ticker !== ticker; });
+  totalUSD  = positions.reduce(function(a,p){ return a + p.vm_usd; }, 0);
   render();
 }
- 
+
+function openAddForm() {
+  document.getElementById('add-form-wrap').style.display = 'block';
+}
+
+function closeAddForm() {
+  document.getElementById('add-form-wrap').style.display = 'none';
+}
+
 function addFromForm() {
-  const ticker = document.getElementById('f-ticker').value.trim().toUpperCase();
-  const name = document.getElementById('f-name').value.trim();
-  const sector = document.getElementById('f-sector').value;
-  const vn = parseFloat(document.getElementById('f-vn').value);
-  const cotiz = parseFloat(document.getElementById('f-cotiz').value);
- 
+  var ticker = document.getElementById('f-ticker').value.trim().toUpperCase();
+  var sector = document.getElementById('f-sector').value;
+  var vn     = parseFloat(document.getElementById('f-vn').value);
+  var cotiz  = parseFloat(document.getElementById('f-cotiz').value);
+
   if (!ticker || isNaN(vn) || isNaN(cotiz) || vn <= 0 || cotiz <= 0) {
-    alert('Completar ticker, V. nominal y cotización correctamente.');
+    alert('Completá ticker, V. nominal y cotización correctamente.');
     return;
   }
-  const existing = positions.findIndex(p => p.ticker === ticker);
+
+  var vm_ars = vn * cotiz;
+  var vm_usd = vm_ars / tcMep;
+
+  var existing = positions.findIndex(function(p){ return p.ticker === ticker; });
   if (existing >= 0) {
-    positions[existing].vn += vn;
-    positions[existing].cotiz = cotiz;
+    positions[existing].vn     += vn;
+    positions[existing].cotiz   = cotiz;
+    positions[existing].vm_ars += vm_ars;
+    positions[existing].vm_usd += vm_usd;
   } else {
-    positions.push({ ticker, name: name || ticker, sector, vn, cotiz });
+    positions.push({
+      ticker: ticker,
+      sector: sector,
+      vn:     vn,
+      cotiz:  cotiz,
+      vm_ars: vm_ars,
+      vm_usd: vm_usd,
+      pct:    0
+    });
   }
- 
+
+  totalUSD = positions.reduce(function(a,p){ return a + p.vm_usd; }, 0);
+  positions.forEach(function(p) {
+    p.pct = totalUSD > 0 ? p.vm_usd / totalUSD * 100 : 0;
+  });
+
   document.getElementById('f-ticker').value = '';
-  document.getElementById('f-name').value = '';
-  document.getElementById('f-vn').value = '';
-  document.getElementById('f-cotiz').value = '';
+  document.getElementById('f-vn').value     = '';
+  document.getElementById('f-cotiz').value  = '';
+  closeAddForm();
   render();
 }
- 
-document.getElementById('search').addEventListener('input', e => {
+
+document.getElementById('search').addEventListener('input', function(e) {
   searchQ = e.target.value;
   render();
 });
-document.getElementById('filter-sector').addEventListener('change', e => {
+document.getElementById('filter-sector').addEventListener('change', function(e) {
   filterSector = e.target.value;
   render();
 });
- 
+
 function updateClock() {
-  const now = new Date();
   document.getElementById('clock').textContent =
-    now.toLocaleTimeString('es-AR', {hour:'2-digit',minute:'2-digit'});
+    new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
 }
 updateClock();
 setInterval(updateClock, 10000);
- 
-render();
+
+loadData();
 </script>
 </body>
 </html>
