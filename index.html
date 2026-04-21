@@ -7,130 +7,57 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #0d0f14;
-  --surface: #13151c;
-  --surface2: #1a1d26;
-  --border: rgba(255,255,255,0.06);
-  --border2: rgba(255,255,255,0.12);
-  --text: #e8eaf0;
-  --muted: #6b7280;
-  --accent: #4f8ef7;
-  --green: #22c55e;
-  --red: #ef4444;
-  --amber: #f59e0b;
-  --mono: 'IBM Plex Mono', monospace;
-  --sans: 'Syne', sans-serif;
+  --bg: #0d0f14; --surface: #13151c; --surface2: #1a1d26;
+  --border: rgba(255,255,255,0.06); --border2: rgba(255,255,255,0.12);
+  --text: #e8eaf0; --muted: #6b7280; --accent: #4f8ef7;
+  --green: #22c55e; --red: #ef4444; --amber: #f59e0b;
+  --mono: 'IBM Plex Mono', monospace; --sans: 'Syne', sans-serif;
 }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-  font-size: 14px;
-  min-height: 100vh;
-}
-
-/* ── Nav ── */
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 28px;
-  height: 52px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; min-height: 100vh; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 52px; background: var(--surface); border-bottom: 1px solid var(--border); }
 .nav-logo { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
 .nav-logo span { color: var(--accent); }
 .nav-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; gap: 20px; align-items: center; }
 .nav-meta .tag { background: rgba(79,142,247,0.12); color: var(--accent); padding: 3px 8px; border-radius: 4px; }
-
-/* ── Layout ── */
 .shell { max-width: 1500px; margin: 0 auto; padding: 28px 28px 60px; }
-
-/* ── TC strip ── */
 .tc-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
 .tc-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; flex: 1; min-width: 80px; }
 .tc-box .tc-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 .tc-box .tc-val { font-family: var(--mono); font-size: 13px; font-weight: 500; margin-top: 2px; }
-
-/* ── Summary cards ── */
 .summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 28px; }
 .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; }
 .stat-card .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
 .stat-card .val { font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--text); line-height: 1; }
 .stat-card .sub { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 5px; }
-.stat-card .delta { font-family: var(--mono); font-size: 12px; margin-top: 4px; }
-
-/* ── Main grid ── */
 .main-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
-
-/* ── Table section ── */
 .table-section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-.table-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 12px; flex-wrap: wrap;
-}
+.table-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
 .table-title { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
 .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .search-wrap { position: relative; }
-.search-wrap svg {
-  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
-  width: 14px; height: 14px; stroke: var(--muted); fill: none; pointer-events: none;
-}
-input[type="text"] {
-  background: var(--surface2); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--sans); font-size: 13px;
-  padding: 6px 10px 6px 32px; border-radius: 7px; width: 180px; outline: none; transition: border-color 0.15s;
-}
+.search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; stroke: var(--muted); fill: none; pointer-events: none; }
+input[type="text"] { background: var(--surface2); border: 1px solid var(--border2); color: var(--text); font-family: var(--sans); font-size: 13px; padding: 6px 10px 6px 32px; border-radius: 7px; width: 180px; outline: none; transition: border-color 0.15s; }
 input[type="text"]:focus { border-color: var(--accent); }
 input[type="text"]::placeholder { color: var(--muted); }
-select {
-  background: var(--surface2); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--sans); font-size: 13px;
-  padding: 6px 28px 6px 10px; border-radius: 7px; outline: none; cursor: pointer;
-  appearance: none; -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b7280'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 10px center;
-}
-button {
-  font-family: var(--sans); font-size: 13px; cursor: pointer;
-  border-radius: 7px; padding: 6px 14px; transition: all 0.15s;
-  border: 1px solid var(--border2); background: var(--surface2); color: var(--text);
-}
+select { background: var(--surface2); border: 1px solid var(--border2); color: var(--text); font-family: var(--sans); font-size: 13px; padding: 6px 28px 6px 10px; border-radius: 7px; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b7280'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+button { font-family: var(--sans); font-size: 13px; cursor: pointer; border-radius: 7px; padding: 6px 14px; transition: all 0.15s; border: 1px solid var(--border2); background: var(--surface2); color: var(--text); }
 button:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); }
 button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
 button.primary:hover { background: #3a7de0; border-color: #3a7de0; color: #fff; }
 button.danger-btn { border-color: transparent; background: transparent; color: var(--muted); padding: 4px 8px; font-size: 12px; }
 button.danger-btn:hover { color: var(--red); border-color: transparent; background: transparent; }
-
-/* ── Add form ── */
 .add-form { display: flex; flex-direction: column; gap: 8px; }
 .form-row { display: flex; gap: 6px; }
 .form-row input, .form-row select { flex: 1; min-width: 0; }
 .form-row input[type="text"] { width: auto; padding-left: 10px; }
-.form-row input[type="number"] {
-  background: var(--surface2); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--mono); font-size: 13px;
-  padding: 6px 10px; border-radius: 7px; outline: none; width: 100%;
-}
+.form-row input[type="number"] { background: var(--surface2); border: 1px solid var(--border2); color: var(--text); font-family: var(--mono); font-size: 13px; padding: 6px 10px; border-radius: 7px; outline: none; width: 100%; }
 .form-row input[type="number"]:focus { border-color: var(--accent); }
 label.flabel { font-size: 11px; color: var(--muted); margin-bottom: 1px; display: block; }
-
-/* ── Table ── */
 .tbl-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; }
-thead th {
-  font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
-  color: var(--muted); font-weight: 500; padding: 10px 12px;
-  border-bottom: 1px solid var(--border); text-align: right;
-  white-space: nowrap; cursor: pointer; user-select: none; transition: color 0.15s;
-}
+thead th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 500; padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; cursor: pointer; user-select: none; transition: color 0.15s; }
 thead th:first-child { text-align: left; }
 thead th:nth-child(2) { text-align: left; }
 thead th:hover { color: var(--text); }
@@ -139,21 +66,13 @@ thead th.sort-desc::after { content: ' ↓'; color: var(--accent); }
 tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
 tbody tr:hover { background: rgba(255,255,255,0.025); }
 tbody tr:last-child { border-bottom: none; }
-td {
-  padding: 10px 12px; text-align: right;
-  font-family: var(--mono); font-size: 13px; color: var(--text); white-space: nowrap;
-}
+td { padding: 10px 12px; text-align: right; font-family: var(--mono); font-size: 13px; color: var(--text); white-space: nowrap; }
 td:first-child { text-align: left; font-family: var(--sans); }
 td:nth-child(2) { text-align: left; font-family: var(--sans); }
 .ticker { font-weight: 700; font-size: 14px; color: var(--text); }
-.sector-pill {
-  display: inline-block; font-size: 10px; font-family: var(--sans);
-  font-weight: 500; padding: 2px 8px; border-radius: 20px; white-space: nowrap;
-}
+.sector-pill { display: inline-block; font-size: 10px; font-family: var(--sans); font-weight: 500; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
 .bar-cell { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
 .mini-bar { height: 4px; border-radius: 2px; opacity: 0.5; }
-
-/* ── Delta badges ── */
 .delta-pos { color: var(--green); font-size: 12px; }
 .delta-neg { color: var(--red); font-size: 12px; }
 .delta-neu { color: var(--muted); font-size: 12px; }
@@ -161,18 +80,12 @@ td:nth-child(2) { text-align: left; font-family: var(--sans); }
 .vn-delta-pos { color: var(--green); font-size: 11px; display: block; margin-top: 1px; }
 .vn-delta-neg { color: var(--red); font-size: 11px; display: block; margin-top: 1px; }
 .vn-delta-neu { color: var(--muted); font-size: 11px; display: block; margin-top: 1px; }
-
-tfoot td {
-  padding: 12px 12px; font-family: var(--mono); font-size: 13px;
-  font-weight: 500; border-top: 1px solid var(--border2);
-}
+tfoot td { padding: 12px 12px; font-family: var(--mono); font-size: 13px; font-weight: 500; border-top: 1px solid var(--border2); }
 tfoot td:first-child { font-family: var(--sans); color: var(--muted); font-size: 12px; }
-
-/* ── Side panel ── */
 .side-panel { display: flex; flex-direction: column; gap: 16px; }
 .panel-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
-.panel-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 14px; font-weight: 500; }
-.panel-subtitle { font-size: 10px; color: var(--muted); margin-bottom: 10px; font-family: var(--mono); }
+.panel-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 4px; font-weight: 500; }
+.panel-subtitle { font-size: 10px; color: var(--muted); margin-bottom: 12px; font-family: var(--mono); }
 .donut-wrap { position: relative; width: 130px; height: 130px; margin: 0 auto 12px; }
 .donut-wrap canvas { width: 130px !important; height: 130px !important; }
 .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
@@ -183,17 +96,10 @@ tfoot td:first-child { font-family: var(--sans); color: var(--muted); font-size:
 .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
 .legend-name { flex: 1; color: var(--muted); }
 .legend-pct { font-family: var(--mono); font-size: 11px; color: var(--text); }
-.divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
-
-/* ── Empty / error ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
 .empty { text-align: center; padding: 40px; color: var(--muted); font-size: 13px; }
 .error-msg { text-align: center; padding: 40px; color: var(--red); font-size: 13px; }
-
-/* ── Responsive ── */
-@media (max-width: 1000px) {
-  .main-grid { grid-template-columns: 1fr; }
-  .summary-grid { grid-template-columns: repeat(2, 1fr); }
-}
+@media (max-width: 1000px) { .main-grid { grid-template-columns: 1fr; } .summary-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
 <body>
@@ -208,40 +114,22 @@ tfoot td:first-child { font-family: var(--sans); color: var(--muted); font-size:
 </nav>
 
 <div class="shell">
-
   <div class="tc-strip">
     <div class="tc-box"><div class="tc-label">TC MEP</div><div class="tc-val" id="tc-mep">—</div></div>
     <div class="tc-box"><div class="tc-label">Total USD actual</div><div class="tc-val" id="tc-total">—</div></div>
     <div class="tc-box"><div class="tc-label">Total USD anterior</div><div class="tc-val" id="tc-total-ant">—</div></div>
-    <div class="tc-box"><div class="tc-label">Variación semana</div><div class="tc-val" id="tc-delta">—</div></div>
-    <div class="tc-box"><div class="tc-label">Última actualización</div><div class="tc-val" id="tc-update">—</div></div>
+    <div class="tc-box"><div class="tc-label">Variacion semana</div><div class="tc-val" id="tc-delta">—</div></div>
+    <div class="tc-box"><div class="tc-label">Actualizacion</div><div class="tc-val" id="tc-update">—</div></div>
   </div>
 
   <div class="summary-grid">
-    <div class="stat-card">
-      <div class="label">Valor total USD</div>
-      <div class="val" id="s-usd">—</div>
-      <div class="sub" id="s-ars">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="label">Especies</div>
-      <div class="val" id="s-esp">—</div>
-      <div class="sub" id="s-esp-sub">con posición activa</div>
-    </div>
-    <div class="stat-card">
-      <div class="label">Mayor posición</div>
-      <div class="val" id="s-top">—</div>
-      <div class="sub" id="s-top-pct">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="label">Sector dominante</div>
-      <div class="val" id="s-sec">—</div>
-      <div class="sub" id="s-sec-pct">—</div>
-    </div>
+    <div class="stat-card"><div class="label">Valor total USD</div><div class="val" id="s-usd">—</div><div class="sub" id="s-ars">—</div></div>
+    <div class="stat-card"><div class="label">Especies</div><div class="val" id="s-esp">—</div><div class="sub" id="s-esp-sub">con posicion activa</div></div>
+    <div class="stat-card"><div class="label">Mayor posicion</div><div class="val" id="s-top">—</div><div class="sub" id="s-top-pct">—</div></div>
+    <div class="stat-card"><div class="label">Sector dominante</div><div class="val" id="s-sec">—</div><div class="sub" id="s-sec-pct">—</div></div>
   </div>
 
   <div class="main-grid">
-
     <div class="table-section">
       <div class="table-header">
         <div class="table-title">Posiciones</div>
@@ -258,23 +146,26 @@ tfoot td:first-child { font-family: var(--sans); color: var(--muted); font-size:
       <div id="add-form-wrap" style="display:none;padding:16px 20px;border-bottom:1px solid var(--border);background:var(--surface2);">
         <div class="add-form">
           <div class="form-row">
-            <div style="flex:1">
-              <label class="flabel">Ticker</label>
-              <input type="text" id="f-ticker" placeholder="AAPL" style="width:100%;padding-left:10px">
-            </div>
-            <div style="flex:2">
-              <label class="flabel">Sector</label>
+            <div style="flex:1"><label class="flabel">Ticker</label><input type="text" id="f-ticker" placeholder="AAPL" style="width:100%;padding-left:10px"></div>
+            <div style="flex:2"><label class="flabel">Sector</label>
               <select id="f-sector" style="width:100%">
-                <option>Energía</option><option>Tecnología</option><option>Financiero</option>
-                <option>ETF</option><option>Conglomerado</option><option>Industria</option>
-                <option>Consumo</option><option>Agro</option><option>Real Estate</option>
-                <option>Minería</option><option>Otro</option>
+                <option value="Energia">Energia</option>
+                <option value="Tecnologia">Tecnologia</option>
+                <option value="Financiero">Financiero</option>
+                <option value="ETF">ETF</option>
+                <option value="Conglomerado">Conglomerado</option>
+                <option value="Industria">Industria</option>
+                <option value="Consumo">Consumo</option>
+                <option value="Agro">Agro</option>
+                <option value="Real Estate">Real Estate</option>
+                <option value="Mineria">Mineria</option>
+                <option value="Otro">Otro</option>
               </select>
             </div>
           </div>
           <div class="form-row">
             <div style="flex:1"><label class="flabel">V. nominal</label><input type="number" id="f-vn" placeholder="1000" min="0"></div>
-            <div style="flex:1"><label class="flabel">Cotización $</label><input type="number" id="f-cotiz" placeholder="5000" min="0"></div>
+            <div style="flex:1"><label class="flabel">Cotizacion $</label><input type="number" id="f-cotiz" placeholder="5000" min="0"></div>
           </div>
           <div class="form-row">
             <button class="primary" onclick="addFromForm()" style="flex:1">Agregar</button>
@@ -290,7 +181,7 @@ tfoot td:first-child { font-family: var(--sans); color: var(--muted); font-size:
               <th onclick="sortBy('ticker')" id="th-ticker">Especie</th>
               <th onclick="sortBy('sector')" id="th-sector">Sector</th>
               <th onclick="sortBy('vn')" id="th-vn">V. nominal</th>
-              <th onclick="sortBy('cotiz')" id="th-cotiz">Cotización</th>
+              <th onclick="sortBy('cotiz')" id="th-cotiz">Cotizacion</th>
               <th onclick="sortBy('delta_cotiz')" id="th-delta_cotiz">Var. cotiz.</th>
               <th onclick="sortBy('vm_ars')" id="th-vm_ars">VM ARS</th>
               <th onclick="sortBy('vm_usd')" id="th-vm_usd">VM USD</th>
@@ -298,51 +189,39 @@ tfoot td:first-child { font-family: var(--sans); color: var(--muted); font-size:
               <th></th>
             </tr>
           </thead>
-          <tbody id="tbody">
-            <tr><td colspan="9" class="empty">Cargando datos...</td></tr>
-          </tbody>
+          <tbody id="tbody"><tr><td colspan="9" class="empty">Cargando datos...</td></tr></tbody>
           <tfoot id="tfoot"></tfoot>
         </table>
       </div>
     </div>
 
     <div class="side-panel">
-
       <div class="panel-card">
-        <div class="panel-title">Composición actual</div>
+        <div class="panel-title">Composicion actual</div>
         <div class="panel-subtitle" id="donut-fecha-act">—</div>
         <div class="donut-wrap">
           <canvas id="donut-act"></canvas>
-          <div class="donut-center">
-            <div class="dc-val" id="dc-val-act">—</div>
-            <div class="dc-sub">USD</div>
-          </div>
+          <div class="donut-center"><div class="dc-val" id="dc-val-act">—</div><div class="dc-sub">USD</div></div>
         </div>
         <div class="legend-list" id="legend-act"></div>
-
         <hr class="divider">
-
-        <div class="panel-title">Composición anterior</div>
+        <div class="panel-title">Composicion anterior</div>
         <div class="panel-subtitle" id="donut-fecha-ant">—</div>
         <div class="donut-wrap">
           <canvas id="donut-ant"></canvas>
-          <div class="donut-center">
-            <div class="dc-val" id="dc-val-ant">—</div>
-            <div class="dc-sub">USD</div>
-          </div>
+          <div class="donut-center"><div class="dc-val" id="dc-val-ant">—</div><div class="dc-sub">USD</div></div>
         </div>
         <div class="legend-list" id="legend-ant"></div>
       </div>
-
     </div>
   </div>
 </div>
 
 <script src="datos.js"></script>
 <script>
-const SECTOR_COLORS = {
-  'Energía':      '#f59e0b',
-  'Tecnología':   '#4f8ef7',
+var SECTOR_COLORS = {
+  'Energia':      '#f59e0b',
+  'Tecnologia':   '#4f8ef7',
   'ETF':          '#a78bfa',
   'Financiero':   '#22c55e',
   'Conglomerado': '#6b7280',
@@ -350,71 +229,50 @@ const SECTOR_COLORS = {
   'Consumo':      '#ec4899',
   'Agro':         '#84cc16',
   'Real Estate':  '#ef4444',
-  'Minería':      '#fb923c',
-  'Otro':         '#888780',
+  'Mineria':      '#fb923c',
+  'Otro':         '#888780'
 };
 
-var positions    = [];
-var positionsAnt = [];
-var totalUSD     = 0;
-var totalUSDAnt  = 0;
-var tcMep        = 0;
-var sortCol      = 'vm_usd';
-var sortDir      = -1;
-var filterSector = '';
-var searchQ      = '';
-var donutAct     = null;
-var donutAnt     = null;
+var positions = [], positionsAnt = [];
+var totalUSD = 0, totalUSDAnt = 0, tcMep = 0;
+var sortCol = 'vm_usd', sortDir = -1;
+var filterSector = '', searchQ = '';
+var donutAct = null, donutAnt = null;
 
 function fmt(n, dec) {
   dec = dec !== undefined ? dec : 0;
   return Number(n).toLocaleString('es-AR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
 }
 
-function deltaClass(v) {
-  if (v === null || v === undefined) return 'delta-neu';
-  if (v > 0) return 'delta-pos';
-  if (v < 0) return 'delta-neg';
-  return 'delta-neu';
-}
-
-function deltaArrow(v) {
-  if (v === null || v === undefined) return '';
-  if (v > 0) return '▲';
-  if (v < 0) return '▼';
-  return '—';
-}
-
 function loadData() {
   try {
     var d = window.CARTERA_DATA;
-    if (!d) throw new Error('datos.js no encontrado en el repositorio');
+    if (!d) throw new Error('datos.js no encontrado');
+    positions    = d.posiciones     || [];
+    positionsAnt = d.posiciones_ant || [];
+    totalUSD     = d.total_usd      || 0;
+    totalUSDAnt  = d.total_usd_ant  || 0;
+    tcMep        = d.tc_mep         || 1412.5;
 
-    positions    = d.posiciones      || [];
-    positionsAnt = d.posiciones_ant  || [];
-    totalUSD     = d.total_usd       || 0;
-    totalUSDAnt  = d.total_usd_ant   || 0;
-    tcMep        = d.tc_mep          || 1412.5;
-
-    document.getElementById('nav-fecha').textContent     = 'Posición al ' + (d.fecha || '—');
-    document.getElementById('tc-mep').textContent        = '$ ' + fmt(tcMep, 2);
-    document.getElementById('tc-total').textContent      = 'USD ' + fmt(totalUSD);
-    document.getElementById('tc-total-ant').textContent  = 'USD ' + fmt(totalUSDAnt);
-    document.getElementById('tc-update').textContent     = d.fecha || '—';
+    document.getElementById('nav-fecha').textContent    = 'Posicion al ' + (d.fecha || '—');
+    document.getElementById('tc-mep').textContent       = '$ ' + fmt(tcMep, 2);
+    document.getElementById('tc-total').textContent     = 'USD ' + fmt(totalUSD);
+    document.getElementById('tc-total-ant').textContent = 'USD ' + fmt(totalUSDAnt);
+    document.getElementById('tc-update').textContent    = d.fecha || '—';
     document.getElementById('donut-fecha-act').textContent = d.fecha     || '—';
-    document.getElementById('donut-fecha-ant').textContent = d.fecha_ant || '—';
+    document.getElementById('donut-fecha-ant').textContent = d.fecha_ant || 'semana anterior';
     document.getElementById('dc-val-act').textContent   = fmt(totalUSD);
     document.getElementById('dc-val-ant').textContent   = fmt(totalUSDAnt);
 
-    var deltaTotal   = totalUSD - totalUSDAnt;
-    var deltaTotalPct = totalUSDAnt > 0 ? deltaTotal / totalUSDAnt * 100 : 0;
-    var deltaEl      = document.getElementById('tc-delta');
-    var sign         = deltaTotal >= 0 ? '+' : '';
-    deltaEl.textContent = sign + fmt(deltaTotal) + ' (' + sign + deltaTotalPct.toFixed(1) + '%)';
+    var deltaTotal    = totalUSD - totalUSDAnt;
+    var deltaPct      = totalUSDAnt > 0 ? deltaTotal / totalUSDAnt * 100 : 0;
+    var sign          = deltaTotal >= 0 ? '+' : '';
+    var deltaEl       = document.getElementById('tc-delta');
+    deltaEl.textContent = sign + fmt(deltaTotal) + ' (' + sign + deltaPct.toFixed(1) + '%)';
     deltaEl.style.color = deltaTotal >= 0 ? 'var(--green)' : 'var(--red)';
 
-    var totalARS = positions.reduce(function(a, p) { return a + (p.vm_ars || 0); }, 0);
-    document.getElementById('tc-ars') && (document.getElementById('tc-ars').textContent = '$ ' + fmt(totalARS));
+    var totalARS = positions.reduce(function(a,p){ return a+(p.vm_ars||0); }, 0);
+    document.getElementById('s-ars').textContent = '$ ' + fmt(totalARS);
 
     populateSectorFilter();
     render();
@@ -427,10 +285,10 @@ function loadData() {
 
 function filtered() {
   var rows = positions.slice();
-  if (filterSector) rows = rows.filter(function(r) { return r.sector === filterSector; });
+  if (filterSector) rows = rows.filter(function(r){ return r.sector === filterSector; });
   if (searchQ) {
     var q = searchQ.toLowerCase();
-    rows = rows.filter(function(r) { return r.ticker.toLowerCase().indexOf(q) >= 0; });
+    rows = rows.filter(function(r){ return r.ticker.toLowerCase().indexOf(q) >= 0; });
   }
   rows.sort(function(a, b) {
     var av = typeof a[sortCol] === 'string' ? a[sortCol] : +(a[sortCol] !== null ? a[sortCol] : -9999);
@@ -444,17 +302,19 @@ function filtered() {
 
 function render() {
   var rows    = filtered();
-  var maxUSD  = Math.max.apply(null, positions.map(function(r) { return r.vm_usd; }));
-  var totalARS = positions.reduce(function(a, r) { return a + (r.vm_ars || 0); }, 0);
+  var maxUSD  = Math.max.apply(null, positions.map(function(r){ return r.vm_usd; }));
+  var totalARS = positions.reduce(function(a,r){ return a+(r.vm_ars||0); }, 0);
 
   document.getElementById('s-usd').textContent = 'USD ' + fmt(totalUSD);
-  document.getElementById('s-ars') && (document.getElementById('s-ars').textContent = '$ ' + fmt(totalARS));
   document.getElementById('s-esp').textContent = positions.length;
 
-  var newCount = positions.filter(function(p) { return p.vn_ant === 0; }).length;
+  var newCount = positions.filter(function(p){ return !p.vn_ant || p.vn_ant === 0; }).length;
   if (newCount > 0) {
     document.getElementById('s-esp-sub').textContent = newCount + ' nueva' + (newCount > 1 ? 's' : '') + ' esta semana';
     document.getElementById('s-esp-sub').style.color = 'var(--accent)';
+  } else {
+    document.getElementById('s-esp-sub').textContent = 'con posicion activa';
+    document.getElementById('s-esp-sub').style.color = '';
   }
 
   var top = positions.slice().sort(function(a,b){ return b.vm_usd - a.vm_usd; })[0];
@@ -464,7 +324,7 @@ function render() {
   }
 
   var secMap = {};
-  positions.forEach(function(r) { secMap[r.sector] = (secMap[r.sector] || 0) + r.vm_usd; });
+  positions.forEach(function(r){ secMap[r.sector] = (secMap[r.sector]||0) + r.vm_usd; });
   var topSec = Object.entries(secMap).sort(function(a,b){ return b[1]-a[1]; })[0];
   if (topSec) {
     document.getElementById('s-sec').textContent     = topSec[0];
@@ -473,36 +333,33 @@ function render() {
 
   document.getElementById('dc-val-act').textContent = fmt(totalUSD);
 
-  // Table
   if (rows.length === 0) {
     document.getElementById('tbody').innerHTML = '<tr><td colspan="9" class="empty">Sin resultados</td></tr>';
   } else {
     document.getElementById('tbody').innerHTML = rows.map(function(r) {
-      var barW    = Math.round(r.vm_usd / maxUSD * 45);
-      var col     = SECTOR_COLORS[r.sector] || '#888';
-      var isNew   = r.vn_ant === 0;
+      var barW  = Math.round(r.vm_usd / maxUSD * 45);
+      var col   = SECTOR_COLORS[r.sector] || '#888';
+      var isNew = !r.vn_ant || r.vn_ant === 0;
 
-      // Cotiz delta cell
       var cotizCell;
       if (isNew) {
         cotizCell = '<span class="delta-new">NUEVA</span>';
       } else if (r.delta_cotiz === null || r.delta_cotiz === undefined) {
         cotizCell = '<span class="delta-neu">—</span>';
       } else {
-        var dcls  = deltaClass(r.delta_cotiz);
-        var darr  = deltaArrow(r.delta_cotiz);
-        var sign  = r.delta_cotiz > 0 ? '+' : '';
-        cotizCell = '<span class="' + dcls + '">' + darr + ' ' + sign + r.delta_cotiz.toFixed(2) + '%</span>';
+        var dcls = r.delta_cotiz > 0 ? 'delta-pos' : r.delta_cotiz < 0 ? 'delta-neg' : 'delta-neu';
+        var darr = r.delta_cotiz > 0 ? '▲' : r.delta_cotiz < 0 ? '▼' : '—';
+        var sign = r.delta_cotiz > 0 ? '+' : '';
+        cotizCell = '<span class="' + dcls + '">' + darr + ' ' + sign + (+r.delta_cotiz).toFixed(2) + '%</span>';
       }
 
-      // VN cell with delta below
-      var vnDelta = '';
-      if (!isNew && r.delta_vn !== 0) {
-        var vnSign  = r.delta_vn > 0 ? '+' : '';
-        var vnCls   = r.delta_vn > 0 ? 'vn-delta-pos' : 'vn-delta-neg';
-        vnDelta = '<span class="' + vnCls + '">' + vnSign + fmt(r.delta_vn) + '</span>';
-      } else if (isNew) {
+      var vnDelta;
+      if (isNew) {
         vnDelta = '<span class="vn-delta-pos">+' + fmt(r.vn) + '</span>';
+      } else if (r.delta_vn > 0) {
+        vnDelta = '<span class="vn-delta-pos">+' + fmt(r.delta_vn) + '</span>';
+      } else if (r.delta_vn < 0) {
+        vnDelta = '<span class="vn-delta-neg">' + fmt(r.delta_vn) + '</span>';
       } else {
         vnDelta = '<span class="vn-delta-neu">sin cambios</span>';
       }
@@ -521,105 +378,66 @@ function render() {
     }).join('');
   }
 
-  var visUSD = rows.reduce(function(a,r){ return a + r.vm_usd; }, 0);
-  var visARS = rows.reduce(function(a,r){ return a + (r.vm_ars||0); }, 0);
+  var visUSD = rows.reduce(function(a,r){ return a+r.vm_usd; }, 0);
+  var visARS = rows.reduce(function(a,r){ return a+(r.vm_ars||0); }, 0);
   document.getElementById('tfoot').innerHTML =
-    '<tr>' +
-    '<td colspan="5" style="font-family:var(--sans);color:var(--muted);font-size:12px">' + rows.length + ' especie' + (rows.length !== 1 ? 's' : '') + '</td>' +
-    '<td>$ ' + fmt(visARS) + '</td>' +
-    '<td>USD ' + fmt(visUSD) + '</td>' +
-    '<td colspan="2"></td>' +
-    '</tr>';
+    '<tr><td colspan="5" style="font-family:var(--sans);color:var(--muted);font-size:12px">' + rows.length + ' especies</td>' +
+    '<td>$ ' + fmt(visARS) + '</td><td>USD ' + fmt(visUSD) + '</td><td colspan="2"></td></tr>';
 
   renderActDonut(secMap);
   renderSortHeaders();
 }
 
-function buildDonutData(posList, total) {
-  var secMap = {};
-  posList.forEach(function(r) { secMap[r.sector] = (secMap[r.sector] || 0) + r.vm_usd; });
-  var entries = Object.entries(secMap).sort(function(a,b){ return b[1]-a[1]; });
-  return {
-    labels:  entries.map(function(e){ return e[0]; }),
-    vals:    entries.map(function(e){ return e[1]; }),
-    colors:  entries.map(function(e){ return SECTOR_COLORS[e[0]] || '#888'; }),
-    entries: entries,
-    total:   total,
-  };
-}
-
 function renderActDonut(secMap) {
   var entries = Object.entries(secMap).sort(function(a,b){ return b[1]-a[1]; });
-  var labels  = entries.map(function(e){ return e[0]; });
-  var vals    = entries.map(function(e){ return e[1]; });
-  var colors  = labels.map(function(l){ return SECTOR_COLORS[l] || '#888'; });
-
   if (donutAct) donutAct.destroy();
   donutAct = new Chart(document.getElementById('donut-act').getContext('2d'), {
     type: 'doughnut',
-    data: { labels: labels, datasets: [{ data: vals, backgroundColor: colors, borderWidth: 0, hoverOffset: 3 }] },
-    options: {
-      responsive: false, cutout: '72%',
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: function(c) { return ' ' + (c.raw/totalUSD*100).toFixed(1) + '%  USD ' + fmt(c.raw); }}}
-      }
-    }
+    data: { labels: entries.map(function(e){ return e[0]; }), datasets: [{ data: entries.map(function(e){ return e[1]; }), backgroundColor: entries.map(function(e){ return SECTOR_COLORS[e[0]]||'#888'; }), borderWidth: 0, hoverOffset: 3 }] },
+    options: { responsive: false, cutout: '72%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(c){ return ' ' + (c.raw/totalUSD*100).toFixed(1) + '%  USD ' + fmt(c.raw); }}}}}
   });
-
-  document.getElementById('legend-act').innerHTML = entries.map(function(entry) {
-    var sec = entry[0]; var val = entry[1];
-    return '<div class="legend-row" onclick="toggleSectorFilter(\'' + sec + '\')">' +
-      '<div class="legend-dot" style="background:' + (SECTOR_COLORS[sec]||'#888') + '"></div>' +
-      '<span class="legend-name">' + sec + '</span>' +
-      '<span class="legend-pct">' + (val/totalUSD*100).toFixed(1) + '%</span>' +
-      '</div>';
+  document.getElementById('legend-act').innerHTML = entries.map(function(e) {
+    return '<div class="legend-row" onclick="toggleSectorFilter(\'' + e[0] + '\')">' +
+      '<div class="legend-dot" style="background:' + (SECTOR_COLORS[e[0]]||'#888') + '"></div>' +
+      '<span class="legend-name">' + e[0] + '</span>' +
+      '<span class="legend-pct">' + (e[1]/totalUSD*100).toFixed(1) + '%</span></div>';
   }).join('');
 }
 
 function renderAntDonut() {
-  var d = buildDonutData(positionsAnt, totalUSDAnt);
+  var secMap = {};
+  positionsAnt.forEach(function(r){ secMap[r.sector] = (secMap[r.sector]||0) + r.vm_usd; });
+  var entries = Object.entries(secMap).sort(function(a,b){ return b[1]-a[1]; });
   if (donutAnt) donutAnt.destroy();
   donutAnt = new Chart(document.getElementById('donut-ant').getContext('2d'), {
     type: 'doughnut',
-    data: { labels: d.labels, datasets: [{ data: d.vals, backgroundColor: d.colors, borderWidth: 0, hoverOffset: 3 }] },
-    options: {
-      responsive: false, cutout: '72%',
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: function(c) { return ' ' + (c.raw/totalUSDAnt*100).toFixed(1) + '%  USD ' + fmt(c.raw); }}}
-      }
-    }
+    data: { labels: entries.map(function(e){ return e[0]; }), datasets: [{ data: entries.map(function(e){ return e[1]; }), backgroundColor: entries.map(function(e){ return SECTOR_COLORS[e[0]]||'#888'; }), borderWidth: 0, hoverOffset: 3 }] },
+    options: { responsive: false, cutout: '72%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(c){ return ' ' + (c.raw/totalUSDAnt*100).toFixed(1) + '%  USD ' + fmt(c.raw); }}}}}
   });
-
-  document.getElementById('legend-ant').innerHTML = d.entries.map(function(entry) {
-    var sec = entry[0]; var val = entry[1];
+  document.getElementById('legend-ant').innerHTML = entries.map(function(e) {
     return '<div class="legend-row">' +
-      '<div class="legend-dot" style="background:' + (SECTOR_COLORS[sec]||'#888') + '"></div>' +
-      '<span class="legend-name">' + sec + '</span>' +
-      '<span class="legend-pct">' + (val/totalUSDAnt*100).toFixed(1) + '%</span>' +
-      '</div>';
+      '<div class="legend-dot" style="background:' + (SECTOR_COLORS[e[0]]||'#888') + '"></div>' +
+      '<span class="legend-name">' + e[0] + '</span>' +
+      '<span class="legend-pct">' + (e[1]/totalUSDAnt*100).toFixed(1) + '%</span></div>';
   }).join('');
 }
 
 function renderSortHeaders() {
   document.querySelectorAll('thead th[id]').forEach(function(th) {
-    th.classList.remove('sort-asc', 'sort-desc');
-    var col = th.id.replace('th-', '');
+    th.classList.remove('sort-asc','sort-desc');
+    var col = th.id.replace('th-','');
     if (col === sortCol) th.classList.add(sortDir === -1 ? 'sort-desc' : 'sort-asc');
   });
 }
 
 function populateSectorFilter() {
-  var sel     = document.getElementById('filter-sector');
+  var sel = document.getElementById('filter-sector');
   var current = sel.value;
   var sectors = [];
-  positions.forEach(function(p) { if (sectors.indexOf(p.sector) < 0) sectors.push(p.sector); });
+  positions.forEach(function(p){ if (sectors.indexOf(p.sector) < 0) sectors.push(p.sector); });
   sectors.sort();
   sel.innerHTML = '<option value="">Todos los sectores</option>' +
-    sectors.map(function(s) {
-      return '<option value="' + s + '"' + (s === current ? ' selected' : '') + '>' + s + '</option>';
-    }).join('');
+    sectors.map(function(s){ return '<option value="' + s + '"' + (s===current?' selected':'') + '>' + s + '</option>'; }).join('');
 }
 
 function sortBy(col) {
@@ -635,9 +453,9 @@ function toggleSectorFilter(sec) {
 }
 
 function removePos(ticker) {
-  positions = positions.filter(function(p) { return p.ticker !== ticker; });
-  totalUSD  = positions.reduce(function(a,p){ return a + p.vm_usd; }, 0);
-  positions.forEach(function(p) { p.pct = totalUSD > 0 ? p.vm_usd/totalUSD*100 : 0; });
+  positions = positions.filter(function(p){ return p.ticker !== ticker; });
+  totalUSD  = positions.reduce(function(a,p){ return a+p.vm_usd; }, 0);
+  positions.forEach(function(p){ p.pct = totalUSD > 0 ? p.vm_usd/totalUSD*100 : 0; });
   render();
 }
 
@@ -649,41 +467,35 @@ function addFromForm() {
   var sector = document.getElementById('f-sector').value;
   var vn     = parseFloat(document.getElementById('f-vn').value);
   var cotiz  = parseFloat(document.getElementById('f-cotiz').value);
-  if (!ticker || isNaN(vn) || isNaN(cotiz) || vn <= 0 || cotiz <= 0) {
-    alert('Completá ticker, V. nominal y cotización correctamente.');
-    return;
-  }
+  if (!ticker || isNaN(vn) || isNaN(cotiz) || vn <= 0 || cotiz <= 0) { alert('Completá todos los campos.'); return; }
   var vm_ars = vn * cotiz;
   var vm_usd = vm_ars / tcMep;
   var existing = -1;
-  positions.forEach(function(p, i) { if (p.ticker === ticker) existing = i; });
+  positions.forEach(function(p,i){ if (p.ticker===ticker) existing=i; });
   if (existing >= 0) {
-    positions[existing].vn     += vn;
-    positions[existing].cotiz   = cotiz;
+    positions[existing].vn += vn;
+    positions[existing].cotiz = cotiz;
     positions[existing].vm_ars += vm_ars;
     positions[existing].vm_usd += vm_usd;
   } else {
     positions.push({ ticker:ticker, sector:sector, vn:vn, vn_ant:0, delta_vn:vn, cotiz:cotiz, cotiz_ant:0, delta_cotiz:null, vm_ars:vm_ars, vm_usd:vm_usd, pct:0 });
   }
-  totalUSD = positions.reduce(function(a,p){ return a + p.vm_usd; }, 0);
-  positions.forEach(function(p) { p.pct = totalUSD > 0 ? p.vm_usd/totalUSD*100 : 0; });
+  totalUSD = positions.reduce(function(a,p){ return a+p.vm_usd; }, 0);
+  positions.forEach(function(p){ p.pct = totalUSD>0 ? p.vm_usd/totalUSD*100 : 0; });
   document.getElementById('f-ticker').value = '';
-  document.getElementById('f-vn').value     = '';
-  document.getElementById('f-cotiz').value  = '';
+  document.getElementById('f-vn').value = '';
+  document.getElementById('f-cotiz').value = '';
   closeAddForm();
   render();
 }
 
-document.getElementById('search').addEventListener('input', function(e) { searchQ = e.target.value; render(); });
-document.getElementById('filter-sector').addEventListener('change', function(e) { filterSector = e.target.value; render(); });
+document.getElementById('search').addEventListener('input', function(e){ searchQ=e.target.value; render(); });
+document.getElementById('filter-sector').addEventListener('change', function(e){ filterSector=e.target.value; render(); });
 
 function updateClock() {
-  document.getElementById('clock').textContent =
-    new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+  document.getElementById('clock').textContent = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
 }
-updateClock();
-setInterval(updateClock, 10000);
-
+updateClock(); setInterval(updateClock, 10000);
 loadData();
 </script>
 </body>
